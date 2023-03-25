@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.mapper.GroupMapper">
+
+    <resultMap id="BaseResultMap" type="org.example.entity.GroupRecord">
+        <result property="groupId" column="groupId" jdbcType="VARCHAR"/>
+        <result property="uid" column="uid" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        groupId
+        ,uid
+    </sql>
+    <insert id="insert">
+        insert into group_uid
+        values (#{groupId}, #{uid})
+    </insert>
+    <delete id="deleteByGroup">
+        delete
+        from group_uid
+        where groupId = #{groupId}
+    </delete>
+    <delete id="deleteRecord">
+        delete
+        from group_uid
+        where groupId = #{groupId}
+          and uid = #{uid}
+    </delete>
+    <select id="selectByGroupId" resultType="java.lang.String">
+        select uid as uid
+        from group_uid
+        where groupId = #{groupId}
+    </select>
+    <select id="selectAuthorByGroup" resultType="java.lang.String">
+        select author
+        from up_latest_video_entity u,
+             group_uid g
+        where u.uid = g.uid
+          and g.groupId = #{groupId}
+    </select>
+    <select id="selectByUid" resultType="java.lang.String">
+        select groupId
+        from group_uid
+        where uid = #{uid}
+    </select>
+</mapper>

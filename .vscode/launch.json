@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "msedge",
+            "name": "https://t.bilibili.com/?tab=video",
+            "request": "launch",
+            "url": "https://t.bilibili.com/?tab=video"
+        }
+    ]
+}

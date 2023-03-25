@@ -1,0 +1,11 @@
+{
+
+    "wrapper": "./view/botdisplay/src/Wrapper.vue",
+
+    "viewport": {
+      "width": 375,
+      "height": 667
+    },
+
+    "background": "#ffffff"
+  }

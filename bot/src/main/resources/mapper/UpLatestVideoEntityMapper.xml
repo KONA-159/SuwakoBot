@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.mapper.UpLatestVideoEntityMapper">
+
+    <resultMap id="BaseResultMap" type="org.example.entity.UpLatestVideoEntity">
+            <id property="uid" column="uid" jdbcType="VARCHAR"/>
+            <result property="title" column="title" jdbcType="VARCHAR"/>
+            <result property="pic" column="pic" jdbcType="VARCHAR"/>
+            <result property="author" column="author" jdbcType="VARCHAR"/>
+            <result property="created" column="created" jdbcType="VARCHAR"/>
+            <result property="bvid" column="bvid" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        uid,title,pic,
+        author,created,bvid
+    </sql>
+    <insert id="insertVideo">
+        insert into up_latest_video_entity
+        values(#{video.uid},#{video.title},#{video.pic},#{video.author},#{video.created},#{video.bvid})
+    </insert>
+    <update id="updateLatestVideo">
+        update up_latest_video_entity
+        set title=#{newOne.title},
+            pic=#{newOne.pic},
+            author=#{newOne.author},
+            created=#{newOne.created},
+            bvid=#{newOne.bvid}
+        where uid = #{newOne.uid}
+    </update>
+    <delete id="deleteByUid">
+        delete
+        from up_latest_video_entity
+        where uid=#{uid}
+    </delete>
+    <select id="findAll" resultType="org.example.entity.UpLatestVideoEntity">
+        select * from up_latest_video_entity
+    </select>
+    <select id="selectByUid" resultType="org.example.entity.UpLatestVideoEntity">
+        select * from up_latest_video_entity where uid=#{uid};
+    </select>
+</mapper>
